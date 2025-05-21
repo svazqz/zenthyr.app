@@ -1,0 +1,55 @@
+---
+---
+
+<div class="background-pattern">
+  <div class="circles">
+    {Array.from({ length: 50 }).map(() => (
+      <div class="circle"></div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .background-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(79, 70, 229, 0.1), transparent);
+  }
+
+  .circles {
+    position: absolute;
+    inset: 0;
+    animation: rotate 20s linear infinite;
+  }
+
+  .circle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid rgba(79, 70, 229, 0.1);
+    border-radius: 50%;
+    animation: moveRandom 15s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes moveRandom {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(100px, 50px) scale(1.5);
+    }
+    50% {
+      transform: translate(50px, 100px) scale(1);
+    }
+    75% {
+      transform: translate(-50px, 50px) scale(1.5);
+    }
+  }
+</style>
