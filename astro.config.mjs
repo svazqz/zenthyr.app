@@ -4,6 +4,8 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
+  site: 'https://svazqz.github.io',
+  base: '/zenthyr.app',
   integrations: [
     starlight({
       title: 'Zenthyr Docs',
