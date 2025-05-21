@@ -3,9 +3,11 @@ import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
+const base = process.env.BASE_PATH || '';
+
 export default defineConfig({
   site: 'https://svazqz.github.io',
-  base: '/zenthyr.app',
+  base: base,
   integrations: [
     starlight({
       title: 'Zenthyr Docs',
