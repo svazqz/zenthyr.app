@@ -1,0 +1,11 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M60 10L110 40V80L60 110L10 80V40L60 10Z" stroke="#4F46E5" stroke-width="4" fill="none">
+    <animate attributeName="stroke-dasharray" from="0,360" to="360,360" dur="2s" fill="freeze" />
+  </path>
+  <path d="M60 30L85 45V75L60 90L35 75V45L60 30Z" fill="#818CF8">
+    <animate attributeName="opacity" values="0;1" dur="1s" fill="freeze" begin="1s" />
+  </path>
+  <circle cx="60" cy="60" r="10" fill="#4F46E5">
+    <animate attributeName="r" values="0;10" dur="0.5s" fill="freeze" begin="1.5s" />
+  </circle>
+</svg>

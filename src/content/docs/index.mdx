@@ -1,0 +1,43 @@
+---
+title: Welcome to Zenthyr
+description: A Clojure library and Leiningen template for desktop apps (JCEF + Vite)
+template: splash
+hero:
+  tagline: Build desktop apps with a JVM backend and a modern web UI (JCEF + Vite)
+  actions:
+    - text: Get Started
+      link: /guides/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/svazqz/zenthyr
+      icon: external
+---
+
+## Quick Start
+
+```bash
+# Create a new app
+lein new zenthyr my-app
+cd my-app
+
+# Run the JVM backend + JCEF window (starts Vite during development)
+lein run
+```
+
+## What You Get
+
+Zenthyr is a Clojure library (plus a Leiningen template) for building desktop applications with:
+
+- A JVM backend that stays in control of your app
+- A modern web UI rendered in a JCEF (Chromium) window
+- A tight dev loop powered by Vite hot reload
+- Frontend templates for React (default), Vue, Svelte, and Angular
+- IPC implemented using JCEF’s `cefQuery` (CefMessageRouter), not WebSockets
+
+## Next Steps
+
+- Read [Getting Started](/guides/getting-started/)
+- Understand the [Architecture](/guides/architecture/)
+- Build the [Frontend](/guides/frontend/)
+- Implement the [Backend handler](/guides/backend/)
