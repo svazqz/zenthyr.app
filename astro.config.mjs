@@ -14,7 +14,7 @@ export default defineConfig({
       social: [
         {
           label: 'GitHub',
-          href: 'https://github.com/yourusername/zenthyr',
+          href: 'https://github.com/svazqz/zenthyr',
           icon: 'github',
         },
       ],

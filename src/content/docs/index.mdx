@@ -1,99 +1,43 @@
 ---
 title: Welcome to Zenthyr
-description: A Clojure-based desktop application framework
+description: A Clojure library and Leiningen template for desktop apps (JCEF + Vite)
 template: splash
 hero:
-  tagline: Build powerful desktop applications with Clojure and React
+  tagline: Build desktop apps with a JVM backend and a modern web UI (JCEF + Vite)
   actions:
     - text: Get Started
       link: /guides/getting-started/
       icon: right-arrow
       variant: primary
     - text: View on GitHub
-      link: https://github.com/yourusername/zenthyr
+      link: https://github.com/svazqz/zenthyr
       icon: external
 ---
 
 ## Quick Start
 
 ```bash
-# Create a new Zenthyr project
-npx create-zenthyr-app my-app
+# Create a new app
+lein new zenthyr my-app
 cd my-app
 
-# Start the development server
-npm run dev
+# Run the JVM backend + JCEF window (starts Vite during development)
+lein run
 ```
 
-Features
-Clojure Backend: Build robust server-side logic
-React Frontend: Create modern user interfaces
-Electron Integration: Package as native desktop apps
-Hot Reloading: Seamless development experience
-plaintext
+## What You Get
 
-Let's also create the getting started guide:```markdown:%2FUsers%2Fsergiovazquez%2FProjects%2Fzenthyr%2Fzenthyr.app%2Fsrc%2Fcontent%2Fdocs%2Fguides%2Fgetting-started.mdx---title: Getting Started with Zenthyrdescription: Learn how to create your first Zenthyr application---# Getting Started## PrerequisitesBefore you begin, ensure you have the following installed:- Node.js (v18.17.1 or later)- Java JDK 8 or later- Clojure CLI tools## Installation1. Create a new Zenthyr project:```bashnpx create-zenthyr-app my-app
-Navigate to the project directory:
-bash
-Run
-cd my-app
-Install dependencies:
-bash
-Run
-npm install
-Start the development server:
-bash
-Run
-npm run dev
-Project Structure
-plaintext
+Zenthyr is a Clojure library (plus a Leiningen template) for building desktop applications with:
 
-my-app/├── src/│   ├── app/          # React frontend│   ├── zenthyr/      # Core framework│   └── main.clj      # Application logic├── package.json└── project.clj
-Next Steps
-Explore the Architecture
-Frontend Development
-Backend Development
-plaintext
+- A JVM backend that stays in control of your app
+- A modern web UI rendered in a JCEF (Chromium) window
+- A tight dev loop powered by Vite hot reload
+- Frontend templates for React (default), Vue, Svelte, and Angular
+- IPC implemented using JCEF’s `cefQuery` (CefMessageRouter), not WebSockets
 
-Update the astro.config.mjs to include the correct documentation structure:
-```javascript
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
+## Next Steps
 
-export default defineConfig({
-  integrations: [
-    starlight({
-      title: 'Zenthyr Docs',
-      social: [
-        {
-          label: 'GitHub',
-          href: 'https://github.com/yourusername/zenthyr',
-          icon: 'github',
-        },
-      ],
-      sidebar: [
-        {
-          label: 'Guides',
-          items: [
-            { label: 'Getting Started', link: '/guides/getting-started' },
-            { label: 'Architecture', link: '/guides/architecture' },
-            { label: 'Frontend Development', link: '/guides/frontend' },
-            { label: 'Backend Development', link: '/guides/backend' },
-          ],
-        },
-        {
-          label: 'Reference',
-          items: [
-            { label: 'Configuration', link: '/reference/configuration' },
-            { label: 'API', link: '/reference/api' },
-          ],
-        },
-      ],
-    }),
-    react(),
-    tailwind(),
-  ],
-});
-```
+- Read [Getting Started](/guides/getting-started/)
+- Understand the [Architecture](/guides/architecture/)
+- Build the [Frontend](/guides/frontend/)
+- Implement the [Backend handler](/guides/backend/)
