@@ -5,55 +5,51 @@ description: Understanding the architecture of Zenthyr applications
 
 # Architecture
 
-Zenthyr follows a modern architecture that combines the best of Clojure and web technologies.
+Zenthyr runs your backend and UI in the same JVM process, with the UI rendered by JCEF (Chromium). During development, the UI is served by Vite, and the backend communicates with the UI via JCEF’s message router (`cefQuery`).
 
 ## Overview
 
-The architecture consists of three main layers:
+At a high level, the moving parts are:
 
-1. **Clojure Backend**
-   - Handles business logic
-   - Manages application state
-   - Provides REPL-driven development
-   - Communicates with system resources
+1. **Clojure backend (JVM)**
+   - Owns app lifecycle and native integration
+   - Starts/stops the frontend dev server during development
 
-2. **Electron Bridge**
-   - Manages IPC (Inter-Process Communication)
-   - Handles window management
-   - Provides native OS integration
-   - Enables cross-platform compatibility
+2. **JCEF (Chromium) window**
+   - Renders your web UI inside the desktop app window
+   - Hosts the IPC bridge used by the frontend
 
-3. **React Frontend**
-   - Renders the user interface
-   - Manages UI state
-   - Handles user interactions
-   - Provides hot-reloading capability
+3. **Vite frontend (React/Vue/Svelte/Angular)**
+   - Served from `http://localhost:<port>` during development
+   - Hot reload updates the UI while the JVM stays running
 
 ## Communication Flow
 
 ```plaintext
-[Clojure Backend] <-> [Electron IPC] <-> [React Frontend]
+[Frontend UI] -- window.cefQuery(JSON) --> [Clojure handler]
+[Clojure handler] -- JSON response --> [Frontend UI]
+
+[Vite dev server] -- http://localhost:<port> --> [JCEF window] -- loads --> [Frontend UI]
 ```
 
-## Key Components
-### Backend Layer
-- Core Engine : Written in Clojure, handles main application logic
-- State Management : Uses Clojure's immutable data structures
-- System Integration : Direct access to system resources
-### Middleware Layer
-- IPC Bridge : Manages communication between frontend and backend
-- Window Management : Handles application windows and lifecycle
-- Resource Management : Controls system resources and permissions
-### Frontend Layer
-- UI Components : React-based modular components
-- State Management : Local state with React hooks
-- Hot Module Replacement : Instant UI updates during development
-## Best Practices
-1. Keep business logic in the Clojure backend
-2. Use IPC for all backend-frontend communication
-3. Maintain UI state in React components
-4. Leverage REPL for backend development
-5. Use hot-reloading for frontend development
+## IPC (Frontend ↔ Backend)
+
+Zenthyr injects a small bridge into the page, exposing:
+
+- `window.zenthyr.invoke(message)` → returns a Promise resolving to a JSON response
+- `window.zenthyr.emit(message)` → fire-and-forget style message
+
+On the backend, you provide a `:handler` function to `zenthyr/start-app!` which receives the parsed JSON message and returns a Clojure map that will be encoded back to JSON.
+
+## Window/Process Lifecycle (macOS)
+
+Zenthyr aims to behave like a native macOS app:
+
+- Window close button hides the window but keeps the process alive (dock icon stays)
+- Dock icon click reopens the window
+- Quit (Cmd+Q or Dock menu Quit) exits the JVM and shuts down child processes (including Vite)
+
 ## Next Steps
-- Frontend Development
-- Backend Development
+
+- Build the [Frontend](/guides/frontend/)
+- Implement the [Backend handler](/guides/backend/)

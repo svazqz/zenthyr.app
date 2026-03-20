@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Zenthyr
-description: Learn how to create your first Zenthyr application
+description: Generate a new app and run it with `lein run`
 ---
 
 # Getting Started
@@ -8,44 +8,58 @@ description: Learn how to create your first Zenthyr application
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Node.js (v18.17.1 or later)
-- Java JDK 8 or later
-- Clojure CLI tools
+- Java (JDK installed and on PATH)
+- Node.js + npm
+- Leiningen
 
-## Installation
+## Create a New App
 
-1. Create a new Zenthyr project:
+If you are developing Zenthyr locally, install the template first:
+
 ```bash
-npx create-zenthyr-app my-app
+cd template
+lein install
 ```
-2. Navigate to the project directory:
+
+Generate a project (this also runs `git init` inside the generated folder):
+
+```bash
+lein new zenthyr my-app
+```
+
+Select a frontend framework:
+
+```bash
+lein new zenthyr my-react-app   +react
+lein new zenthyr my-vue-app     +vue
+lein new zenthyr my-svelte-app  +svelte
+lein new zenthyr my-angular-app +angular
+```
+
+## Run It
+
 ```bash
 cd my-app
- ```
+lein run
+```
 
-3. Install dependencies:
-```bash
-npm install
- ```
+What happens when you run:
 
-4. Start the development server:
-```bash
-npm run dev
- ```
+- Ensures frontend dependencies (`npm install`) exist (creates `node_modules/` if needed)
+- Starts Vite (`npm run dev`) on an available port
+- Opens a JCEF window pointing at the Vite dev server
 
 ## Project Structure
+
 ```plaintext
 my-app/
-├── src/
-│   ├── app/          # React frontend
-│   ├── zenthyr/      # Core framework
-│   └── main.clj      # Application logic
-├── package.json
-└── project.clj
- ```
+├── project.clj               # Depends on `zenthyr`
+├── src/<app-namespace>/main.clj  # Your entrypoint (with `-main`)
+└── src/app/                  # Vite project root (UI sources under `src/app/src/`)
+```
 
 ## Next Steps
-- Architecture
-- Frontend Development
-- Backend Development
 
+- Read [Architecture](/guides/architecture/)
+- Build the [Frontend](/guides/frontend/)
+- Implement the [Backend handler](/guides/backend/)

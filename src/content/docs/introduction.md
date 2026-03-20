@@ -1,22 +1,23 @@
 ---
 title: Introduction to Zenthyr
-description: Learn about Zenthyr, a Clojure-based desktop application framework
+description: Learn about Zenthyr, a Clojure library and Leiningen template for desktop apps
 ---
 
 # Introduction
 
-Zenthyr is a powerful desktop application framework that combines the robustness of Clojure with modern web technologies. It provides a seamless integration between a Clojure backend and an Electron-powered frontend using React.
+Zenthyr is a Clojure library (plus a Leiningen template) for building desktop applications with a JVM backend and a modern web UI rendered inside a JCEF (Chromium) window.
+
+The focus is a tight dev loop: generate a project, run `lein run`, and iterate with Vite hot reload while your Clojure backend stays in control.
 
 ## Why Zenthyr?
 
-- **Clojure Backend**: Leverage the power of Clojure for your application logic
-- **Modern Frontend**: Use React and modern web technologies for your UI
-- **Electron Integration**: Create cross-platform desktop applications
-- **Developer Experience**: Hot-reloading, REPL-driven development, and more
+- **Library-first**: depend on `zenthyr` from your `project.clj`, keep APIs small and explicit
+- **Modern UI**: build your UI with Vite templates (React, Vue, Svelte, Angular)
+- **Chromium rendering**: JCEF window embeds a full-featured browser engine
+- **Fast iteration**: backend orchestrates Vite and opens a window to the dev server
 
 ## Key Features
 
-- Seamless communication between Clojure backend and React frontend
-- Built-in IPC mechanism for efficient backend-frontend communication
-- Hot-reloading support for both backend and frontend
-- Cross-platform compatibility
+- IPC uses JCEF’s `cefQuery` (CefMessageRouter), not WebSockets
+- Frontend bridge: `window.zenthyr.invoke(message)` and `window.zenthyr.emit(message)`
+- macOS-first window/process lifecycle (dock + close behavior implemented and validated on macOS)
