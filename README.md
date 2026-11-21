@@ -1,29 +1,36 @@
-# zenthyr.app
+# ![Zenthyr Website](docs/readme/banner.svg)
 
-Marketing site + docs for [Zenthyr](https://github.com/svazqz/zenthyr).
+The documentation and marketing site for [Zenthyr](https://github.com/svazqz/zenthyr), built with Astro and Starlight.
 
-This site is built with Astro + Starlight and deployed via GitHub Pages.
+[Quick start](#quick-start) · [Validation](#validation) · [Project layout](#project-layout)
 
-## Project Structure
+## Quick start
 
-- `src/pages/` — marketing pages (homepage, etc.)
-- `src/components/` — marketing components used by pages
-- `src/content/docs/` — documentation content (Markdown/MDX)
-- `public/` — static assets (favicon, logos, etc.)
-- `astro.config.mjs` — Starlight configuration (sidebar, GitHub link, base path)
+Use the Node version in [`.nvmrc`](.nvmrc).
 
-## Commands
+```sh
+npm ci
+npm run dev
+```
 
-All commands are run from the root of this project:
+The [published site](https://svazqz.github.io/zenthyr.app/) is available on GitHub Pages.
 
-| Command | Action |
-| :-- | :-- |
-| `npm install` | Install dependencies |
-| `npm run dev` | Start local dev server |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview the production build locally |
+## Validation
 
-## Deployment Notes
+```sh
+npm run build
+npm run preview
+```
 
-- `astro.config.mjs` reads `BASE_PATH` to set the `base` for GitHub Pages deployments.
-- The GitHub Actions workflow in `.github/workflows/deploy.yml` builds and publishes the `dist/` output.
+## Project layout
+
+| Path | Purpose |
+| --- | --- |
+| [`src/pages/`](src/pages/) | Marketing pages |
+| [`src/content/docs/`](src/content/docs/) | Documentation content |
+| [`src/components/`](src/components/) | Shared site components |
+| [`astro.config.mjs`](astro.config.mjs) | Astro and Starlight configuration |
+
+## Project notes
+
+For GitHub Pages, use the configured site URL and base path when checking asset and documentation links.
