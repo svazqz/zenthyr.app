@@ -2,6 +2,8 @@
 
 The documentation and marketing site for [Zenthyr](https://github.com/svazqz/zenthyr), built with Astro and Starlight.
 
+[![Validation](https://github.com/svazqz/zenthyr.app/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/svazqz/zenthyr.app/actions/workflows/ci.yml)
+
 [Quick start](#quick-start) · [Validation](#validation) · [Project layout](#project-layout)
 
 ## Quick start
