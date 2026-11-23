@@ -19,6 +19,14 @@ The [published site](https://svazqz.github.io/zenthyr.app/) is available on GitH
 
 ## Validation
 
+Run the build and headless Chromium tests in the same container as CI.
+
+```sh
+docker run --rm --init --shm-size=1g \
+  --mount "type=bind,source=$PWD,target=/src,readonly" \
+  mcr.microsoft.com/playwright:v1.64.1-noble sh /src/tests/browser/container.sh
+```
+
 ```sh
 npm run build
 npm run preview
