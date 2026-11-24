@@ -1,12 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
+import { getAssetPath } from '../utils/getAssetPath';
+const github = 'https://github.com/svazqz/zenthyr';
+const start = getAssetPath('/guides/getting-started/');
+const architecture = getAssetPath('/guides/architecture/');
 ---
 
-<Layout title="Zenthyr - Clojure Desktop App Library (JCEF + Vite)">
-  <main>
-    <Hero />
-    <Features />
-  </main>
+<Layout title="Zenthyr · Build desktop apps with Clojure">
+  <div class="site">
+    <header class="mast wrap">
+      <a class="brand" href={getAssetPath('/')}><img src={getAssetPath('/zenthyr-logo.svg')} alt="" width="34" height="34" /> Zenthyr</a>
+      <nav aria-label="Main navigation"><a href={start}>Docs</a><a href={architecture}>Architecture</a><a href={github}>GitHub</a></nav>
+    </header>
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow">Clojure · JCEF · Vite</p>
+        <h1>Desktop apps.<br /><em>Clojure at the core.</em></h1>
+        <p class="lead">Build the interface with web tools and keep application logic on the JVM. Zenthyr runs your UI in a Chromium desktop window and connects it to Clojure through a JavaScript bridge.</p>
+        <div class="actions"><a class="button" href={start}>Get started</a><a class="secondary" href={github}>View on GitHub</a></div>
+      </div>
+      <div class="bridge" aria-label="JavaScript requests pass through the Chromium window to a Clojure handler">
+        <div class="window-title"><span aria-hidden="true">● ● ●</span> Desktop window</div>
+        <div class="bridge-part"><div class="bridge-index">UI</div><div><b>Web interface</b><small>React, Svelte, Vue, or Angular</small></div></div>
+        <div class="bridge-wire">window.zenthyr.invoke(message)</div>
+        <div class="bridge-part"><div class="bridge-index">JVM</div><div><b>Clojure handler</b><small>Application logic and responses</small></div></div>
+        <div class="window-footer">JCEF hosts the window · Vite serves the UI during development</div>
+      </div>
+    </section>
+    <section class="start wrap">
+      <div><p class="eyebrow">Create a project</p><h2>From template to window.</h2><p>Install the Leiningen template, choose a frontend, and start the app. The guide covers prerequisites and the development workflow.</p><a href={start}>Read the setup guide</a></div>
+      <div class="terminal"><div>After installing the template</div><pre><code>lein new zenthyr my-app +react
+cd my-app
+lein run</code></pre></div>
+    </section>
+    <section class="design wrap">
+      <div><p class="eyebrow">How it fits together</p><h2>Three layers, one desktop app.</h2></div>
+      <div class="features"><div><h3>Frontend</h3><p>Build a web UI with the framework you know and iterate with Vite.</p></div><div><h3>Desktop window</h3><p>Run the interface inside Java Chromium Embedded Framework.</p></div><div><h3>Clojure backend</h3><p>Keep state and application logic in Clojure. Expose operations to the UI through the bridge.</p></div></div>
+      <a href={architecture}>Explore the architecture</a>
+    </section>
+  </div>
 </Layout>
+
+<style>
+.site{background:#f7f7f2;color:#222139;min-height:100%;font:1rem/1.55 system-ui,sans-serif}
+.wrap{width:min(100% - 3rem,74rem);margin-inline:auto}
+a{color:inherit;text-underline-offset:.25em}a:hover{color:#4a3fb3}a:focus-visible{outline:2px solid #5242d3;outline-offset:5px}
+.brand{display:flex;align-items:center;gap:.65rem;font-weight:750;font-size:1.2rem;text-decoration:none}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:1.3rem;padding-block:1.25rem;border-bottom:1px solid #d8d6dc}
+nav,.actions{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+nav a{font-weight:600;font-size:.95rem}
+.hero{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(2rem,6vw,5rem);align-items:center;padding-block:clamp(3rem,8vw,7rem)}
+.eyebrow{font:650 .9rem/1.4 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.11em;color:#4a3fb3;margin:0 0 1rem}
+h1,h2,h3{letter-spacing:-.062em;line-height:1.06;font-weight:730;margin:.6rem 0 1rem}h1{font-size:clamp(3rem,6.1vw,6.1rem)}h1 em{font-style:normal;color:#5242c1}h2{font-size:clamp(2rem,4.1vw,3.65rem)}h3{font-size:1.25rem;letter-spacing:-.035em}
+.lead,.start p,.features p{color:#55536a;max-width:36rem}.lead{font-size:1.12rem;margin-bottom:1.5rem}
+.button,.secondary{padding:.7rem .95rem;border-radius:.33rem;text-decoration:none;font-weight:650}.button{background:#4a3fb3;color:white}.button:hover{background:#3a2e8f;color:white}.secondary{border:1px solid #b9b7c7}
+.bridge{border:1px solid #353259;border-radius:.65rem;background:#222139;overflow:hidden;color:#f7f6ff;box-shadow:0 1rem 3rem #24203e35}
+.window-title,.window-footer{padding:.85rem 1rem;color:#c1bfd4;font:.85rem/1.45 ui-monospace,monospace}.window-title{border-bottom:1px solid #494469}.window-title span{margin-right:.7rem;color:#a796ff;font-size:.7rem;letter-spacing:.27em}.window-footer{border-top:1px solid #494469;margin-top:1.15rem}
+.bridge-part{display:flex;align-items:center;gap:.9rem;margin:1rem 1rem 0;padding:.75rem;border:1px solid #494469;background:#2c2948;border-radius:.4rem}.bridge-part small{display:block;color:#c1bfd4}.bridge-index{font:700 .8rem ui-monospace,monospace;color:#e5dcff;background:#574c92;border-radius:.25rem;padding:.45rem;min-width:3rem;text-align:center}.bridge-wire{color:#e4dcff;margin:.8rem 1rem 0 .9rem;padding-left:1rem;border-left:2px solid #a796ff;font:.83rem/1.5 ui-monospace,monospace;overflow-wrap:anywhere}
+.start,.design{border-top:1px solid #d8d6dc;padding-block:3rem}.start{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}.start a,.design>a{color:#4a3fb3;font-weight:650}
+.terminal{background:#222139;color:#f7f6ff;border-radius:.5rem;overflow:hidden}.terminal div{padding:.85rem 1rem;border-bottom:1px solid #494469;color:#c1bfd4;font-size:.9rem}.terminal pre{padding:1.15rem;overflow:auto}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin:2rem 0 1.4rem}.features>div{border-top:2px solid #5242c1;padding-top:.65rem}
+@media(max-width:46rem){.hero,.start,.features{grid-template-columns:1fr}.mast{flex-wrap:wrap}.hero{gap:1.5rem}.wrap{width:min(100% - 2rem,74rem)}}
+</style>

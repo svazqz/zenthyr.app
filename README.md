@@ -44,3 +44,7 @@ npm run preview
 ## Project notes
 
 For GitHub Pages, use the configured site URL and base path when checking asset and documentation links.
+
+## License
+
+Original project code is available under the [MIT License](LICENSE). Third-party components retain their own terms.
